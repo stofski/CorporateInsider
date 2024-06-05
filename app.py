@@ -34,7 +34,7 @@ def upload(file: UploadFile = File(...)):
 
     return {"message": f"Successfully uploaded file: {file.filename}, containing: {contents}"}
 
-@app.post("/mlTest")
+@app.get("/mlTest")
 def upload(prompt: str):
     body = json.dumps({
         "prompt": f"\n\nHuman:{prompt}\n\nAssistant:",
