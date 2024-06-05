@@ -3,6 +3,10 @@ from fastapi import FastAPI, File, HTTPException, UploadFile
 
 app = FastAPI()
 
+@app.get("/test")
+def test():
+    return "Hello World!"
+
 @app.post("/resume")
 def upload(file: UploadFile = File(...)):
     try:
