@@ -42,3 +42,16 @@ def upload(prompt: str):
         "temperature": 0.1,
         "top_p": 0.9,
     })
+
+    client = boto3.client('bedrock-runtime')
+    
+    modelId = 'anthropic.claude-v2'
+    accept = 'application/json'
+    contentType = 'application/json'
+
+    response = client.invoke_model(body=body, modelId=modelId, accept=accept, contentType=contentType)
+
+    response_body = json.loads(response.get('body').read())
+
+    # text
+    return response_body.get('completion')
