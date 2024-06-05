@@ -37,7 +37,7 @@ def upload(file: UploadFile = File(...)):
 @app.post("/mlTest")
 def upload(prompt: str):
     body = json.dumps({
-        "prompt": f"{prompt}",
+        "prompt": f"\n\nHuman:{prompt}",
         "max_tokens_to_sample": 800,
         "temperature": 0.1,
         "top_p": 0.9,
