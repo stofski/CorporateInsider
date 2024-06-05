@@ -24,7 +24,7 @@ def test():
     return "Hello World!"
 
 @app.post("/resume")
-def upload(file: UploadFile = File(...)):
+def resume(file: UploadFile = File(...)):
     try:
         contents = file.file.read()
     except Exception:
@@ -35,7 +35,7 @@ def upload(file: UploadFile = File(...)):
     return {"message": f"Successfully uploaded file: {file.filename}, containing: {contents}"}
 
 @app.get("/mlTest")
-def upload(prompt: str):
+def ml_test(prompt: str):
     body = json.dumps({
         "prompt": f"\n\nHuman:Structure your response in html tags. Format your response as a single line. {prompt}\n\nAssistant:",
         "max_tokens_to_sample": 800,
@@ -53,3 +53,14 @@ def upload(prompt: str):
 
     # text
     return response_body.get('completion')
+
+@app.get("/whichJob")
+def which_job(file: UploadFile = File(...)):
+    try:
+        contents = file.file.read()
+    except Exception:
+        return {"message": "There was an error uploading the file"}
+    finally:
+        file.file.close()
+
+    return {"message": f"Successfully uploaded file: {file.filename}, containing: {contents}"}
