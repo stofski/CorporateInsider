@@ -37,7 +37,7 @@ def upload(file: UploadFile = File(...)):
 @app.get("/mlTest")
 def upload(prompt: str):
     body = json.dumps({
-        "prompt": f"\n\nHuman:{prompt}\n\nAssistant:",
+        "prompt": f"\n\nHuman:Structure your response in html tags. Format your response as a single line. {prompt}\n\nAssistant:",
         "max_tokens_to_sample": 800,
         "temperature": 0.1,
         "top_p": 0.9,
