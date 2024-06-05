@@ -1,0 +1,27 @@
+[
+    {
+        "title": "Amazon: AI spots product defects, reduces waste - About Amazon",
+        "relevance": "Amazon's AI technology for spotting product defects and reducing waste may be of interest to software developers involved in quality assurance and process improvement.",
+        "date": "Mon, 03 Jun 2024 08:54:55 GMT"
+    },
+    {
+        "title": "Amazon Bedrock announces new Converse API - AWS Blog",
+        "relevance": "Announcement of a new API by Amazon Bedrock may be relevant to software developers working with Amazon Web Services.",
+        "date": "Thu, 30 May 2024 18:47:21 GMT"
+    },
+    {
+        "title": "Amazon MSK launches support for KRaft mode for new Apache Kafka clusters - AWS Blog",
+        "relevance": "The launch of support for KRaft mode for new Apache Kafka clusters by Amazon MSK may be relevant to software developers working with data streaming and processing.",
+        "date": "Wed, 29 May 2024 22:23:34 GMT"
+    },
+    {
+        "title": "Introducing Amazon EMR Serverless Streaming jobs for continuous processing on streaming data - AWS - AWS Blog",
+        "relevance": "Introduction of Amazon EMR Serverless Streaming jobs for continuous processing on streaming data may be of interest to software developers working with data processing and analysis.",
+        "date": "Tue, 04 Jun 2024 20:31:36 GMT"
+    },
+    {
+        "title": "Amazon: Generative AI powers Fire TV search experience - About Amazon",
+        "relevance": "The use of Generative AI to power Fire TV search experience by Amazon may be of interest to software developers involved in AI and user experience.",
+        "date": "Thu, 30 May 2024 12:57:06 GMT"
+    }
+]
