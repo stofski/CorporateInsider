@@ -96,6 +96,6 @@ def get_secret():
     except ClientError as e:
         raise e
 
+    # returns in this format:
+    # {"OPENAI_API_KEY":"<secret>","LANGCHAIN_API_KEY":"<secret>"}
     return get_secret_value_response['SecretString']
-
-print(get_secret())
