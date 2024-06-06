@@ -116,7 +116,6 @@ def get_secret():
     # returns in this format:
     # {"OPENAI_API_KEY":"<secret>","LANGCHAIN_API_KEY":"<secret>"}
     ret = json.loads(get_secret_value_response['SecretString'])
-    print(ret)
     return ret
 
 def setupRAG(secrets): 
