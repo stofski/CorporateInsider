@@ -23,3 +23,5 @@ If the cron job is set up correctly, it will poll for updates from bitbucket/git
   - fastapi
   - pydantic
   - boto3
+  - langchain 
+  - langchain-community langchainhub langchain-openai langchain-chroma bs4
