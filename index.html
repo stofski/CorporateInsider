@@ -137,9 +137,14 @@
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                return response.text(); // Expecting HTML response
+                return response.text();
             })
             .then(html => {
+
+                if (html.startsWith('"') && html.endsWith('"')) {
+                    html = html.substring(1, html.length - 1);
+                }
+
                 const cardsContainer = document.getElementById('cards-container');
                 const newContainer = document.createElement('div');
                 newContainer.innerHTML = `
@@ -154,7 +159,6 @@
             })
             .catch(error => {
                 console.error('Error:', error);
-                // Handle error, maybe show an error message
             });
         }
         function insertNewContainer() {
