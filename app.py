@@ -1,13 +1,14 @@
 import typing
 
 from fastapi import FastAPI, File, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
 # from pydantic import BaseModel, Field
 from ec2_metadata import ec2_metadata
 import boto3
 import json
 from botocore.config import Config
-from fastapi.middleware.cors import CORSMiddleware
 from botocore.exceptions import ClientError
+import RAG
 
 app = FastAPI()
 
@@ -29,7 +30,7 @@ my_config = Config(
         'mode': 'standard'
     }
 )
-bedrock = boto3.client(service_name='bedrock-runtime', config=my_config)
+#bedrock = boto3.client(service_name='bedrock-runtime', config=my_config)
 
 @app.get("/test")
 def test():
@@ -45,6 +46,13 @@ def resume(file: UploadFile = File(...)):
         file.file.close()
 
     return {"message": f"Successfully uploaded file: {file.filename}, containing: {contents}"}
+
+@app.get("/RAG")
+def RAG(prompt: str):
+    secrets = get_secret()
+    RAG_chain = RAG.setupRAG(secrets)
+    output = RAG.runRAG(RAG_chain,prompt)
+    return output
 
 @app.get("/mlTest")
 def ml_test(prompt: str):
