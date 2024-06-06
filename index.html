@@ -46,7 +46,7 @@
             margin-bottom: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             font-family: monospace;
-            font-size: 8px;
+            font-size: 12px;
         }
         .card a {
             font-family: monospace;
@@ -127,7 +127,7 @@
     <script>
         function uploadText() {
             const textInput = document.getElementById('text-input').value;
-            const url = `http://35.86.141.224:8000/mlTest?prompt=${encodeURIComponent(textInput)}`;
+            const url = `http://54.188.100.78:8000/RAG?prompt=${encodeURIComponent(textInput)}`;
 
             fetch(url, {
                 method: 'GET'
