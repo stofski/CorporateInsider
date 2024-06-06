@@ -1,13 +1,13 @@
 import typing
 
-from fastapi import FastAPI, File, HTTPException, UploadFile
+from fastapi import FastAPI, File, UploadFile
 # from pydantic import BaseModel, Field
 from ec2_metadata import ec2_metadata
 import boto3
 import json
 from botocore.config import Config
-import botocore.session
 from fastapi.middleware.cors import CORSMiddleware
+from botocore.exceptions import ClientError
 
 app = FastAPI()
 
@@ -76,3 +76,26 @@ def which_job(file: UploadFile = File(...)):
         file.file.close()
 
     return {"message": f"Successfully uploaded file: {file.filename}, containing: {contents}"}
+
+def get_secret():
+
+    secret_name = "OPENAI"
+    region_name = "us-west-2"
+
+    # Create a Secrets Manager client
+    session = boto3.session.Session()
+    client = session.client(
+        service_name='secretsmanager',
+        region_name=region_name
+    )
+
+    try:
+        get_secret_value_response = client.get_secret_value(
+            SecretId=secret_name
+        )
+    except ClientError as e:
+        raise e
+
+    return get_secret_value_response['SecretString']
+
+print(get_secret())
