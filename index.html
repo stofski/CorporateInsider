@@ -8,27 +8,15 @@
         body {
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
+            flex-direction: column;
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
             background: url('https://i.pinimg.com/originals/c5/9a/d2/c59ad2bd4ad2fbacd04017debc679ddb.gif') no-repeat center center fixed;
             background-size: cover;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 600px;
-            height: 500px;
-            overflow-y: auto;
             padding: 20px;
             box-sizing: border-box;
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            margin: 0 auto;
-            margin-top: 20px;
         }
         .body-container {
             display: flex;
@@ -41,20 +29,41 @@
             background-color: rgba(255, 255, 255, 0.7);
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            margin: 0 auto;
-            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .cards-container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-y: auto;
         }
         .card {
-            width: 95%;
+            width: 85%;
             padding: 20px;
             background-color: #fff;
             border-radius: 10px;
-            margin-top: 20px;
+            margin-bottom: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            font-family: Courier, monospace;
+            font-family: monospace;
+            font-size: 8px;
         }
         .card a {
             font-family: monospace;
+        }
+        .card button {
+            background-color: #ccc;
+            color: #333;
+            border: none;
+            padding: 5px 10px;
+            height: 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .card button:hover {
+            background-color: #aaa;
         }
         img {
             width: 150px;
@@ -114,6 +123,7 @@
             <button onclick="uploadText()">→</button>
         </div>
     </div>
+    <div class="cards-container" id="cards-container"></div>
 
     <script>
         function uploadText() {
@@ -130,22 +140,37 @@
                 return response.text(); // Expecting HTML response
             })
             .then(html => {
-                const bodyContainer = document.getElementById('body-container');
+                const cardsContainer = document.getElementById('cards-container');
                 const newContainer = document.createElement('div');
                 newContainer.innerHTML = `
                     <div class="card">
                         <div style="width: 100%; display: flex; align-items: center; margin-bottom: 20px;">
-                            <button onclick="this.parentElement.parentElement.remove()">× Remove</button>
+                            <button onclick="this.parentElement.parentElement.remove()">×</button>
                         </div>
                         ${html}
                     </div>
                 `;
-                bodyContainer.insertBefore(newContainer, bodyContainer.firstChild);
+                cardsContainer.insertBefore(newContainer, cardsContainer.firstChild);
             })
             .catch(error => {
                 console.error('Error:', error);
                 // Handle error, maybe show an error message
             });
+        }
+        function insertNewContainer() {
+            const cardsContainer = document.getElementById('cards-container');
+            const newContainer = document.createElement('div');
+            newContainer.innerHTML = `
+                <div class="card">
+                    <div style="width: 100%; display: flex; align-items: center; margin-bottom: 20px;">
+                        <button onclick="this.parentElement.parentElement.remove()">×</button>
+                    </div>
+                    <p>hello asjhdgjsad ashdajgd jagjsdhg sajdghsagd jahsgd ajhdja</p>
+                    <p>hello asjhdgjsad ashdajgd jagjsdhg sajdghsagd jahsgd ajhdja</p>
+                    <p>hello asjhdgjsad ashdajgd jagjsdhg sajdghsagd jahsgd ajhdja</p>
+                </div>
+            `;
+            cardsContainer.insertBefore(newContainer, cardsContainer.firstChild);
         }
     </script>
 </body>
