@@ -118,12 +118,10 @@
     <script>
         function uploadText() {
             const textInput = document.getElementById('text-input').value;
-            const formData = new FormData();
-            formData.append('text', textInput);
+            const url = `http://35.86.141.224:8000/mlTest?text=${encodeURIComponent(textInput)}`;
 
-            fetch('http://35.86.141.224:8000/mlTest', {
-                method: 'GET',
-                body: formData
+            fetch(url, {
+                method: 'GET'
             })
             .then(response => {
                 if (!response.ok) {
