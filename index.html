@@ -118,7 +118,7 @@
     <script>
         function uploadText() {
             const textInput = document.getElementById('text-input').value;
-            const url = `http://35.86.141.224:8000/mlTest?text=${encodeURIComponent(textInput)}`;
+            const url = `http://35.86.141.224:8000/mlTest?prompt=${encodeURIComponent(textInput)}`;
 
             fetch(url, {
                 method: 'GET'
