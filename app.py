@@ -57,10 +57,9 @@ def resume(file: UploadFile = File(...)):
 
     return {"message": f"Successfully uploaded file: {file.filename}, containing: {contents}"}
 
+
 @app.get("/RAG")
 def RAG(prompt: str):
-    secrets = get_secret()
-    RAG_chain = setupRAG(secrets)
     output = runRAG(RAG_chain,prompt)
     return output
 
@@ -178,3 +177,6 @@ def runRAG(rag_chain,question):
 #                 print(chunk[key], end="", flush=True)
             curr_key = key
     return output["answer"]
+
+secrets = get_secret()
+RAG_chain = setupRAG(secrets)
