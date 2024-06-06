@@ -122,7 +122,7 @@
             formData.append('text', textInput);
 
             fetch('http://35.86.141.224:8000/mlTest', {
-                method: 'POST',
+                method: 'GET',
                 body: formData
             })
             .then(response => {
