@@ -131,30 +131,21 @@
             })
             .then(html => {
                 const bodyContainer = document.getElementById('body-container');
-                bodyContainer.innerHTML = `
-                    <div style="width: 100%; display: flex; align-items: center; margin-bottom: 20px;">
-                        <button onclick="goBack()" style="margin-right: 10px;">← Back</button>
+                const newContainer = document.createElement('div');
+                newContainer.innerHTML = `
+                    <div class="card">
+                        <div style="width: 100%; display: flex; align-items: center; margin-bottom: 20px;">
+                            <button onclick="this.parentElement.parentElement.remove()">× Remove</button>
+                        </div>
+                        ${html}
                     </div>
-                    ${html}
                 `;
+                bodyContainer.insertBefore(newContainer, bodyContainer.firstChild);
             })
             .catch(error => {
                 console.error('Error:', error);
                 // Handle error, maybe show an error message
             });
-        }
-
-        function goBack() {
-            const bodyContainer = document.getElementById('body-container');
-            bodyContainer.innerHTML = `
-                <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTdtNDJmM3RuNjhqN2FiMjlucWp1d2c5MTN6YnhlNmR6b3hlcWx3MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Zpw7K1f3smFfENMsOA/giphy.gif" alt="Glitch in the matrix">
-                <h1>Corporate Insider</h1>
-                <h2>A Glitch in the Matrix</h2>
-                <div class="input-container">
-                    <input type="text" id="text-input" placeholder="Enter your text here">
-                    <button onclick="uploadText()">→</button>
-                </div>
-            `;
         }
     </script>
 </body>
