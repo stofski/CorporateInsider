@@ -7,7 +7,19 @@ import boto3
 import json
 from botocore.config import Config
 import botocore.session
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI()
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 my_config = Config(
     region_name = ec2_metadata.region,
